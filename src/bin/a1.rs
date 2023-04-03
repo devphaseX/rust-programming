@@ -9,12 +9,12 @@
 // * Use the println macro to display messages to the terminal
 
 fn main() {
-    display_name();
-}
-
-fn display_name() {
     let first_name = "Ayomide";
     let last_name = "Lawal";
+    display_name(&first_name);
+    display_name(&last_name);
+}
 
-    println!("{} {}", first_name, last_name);
+fn display_name(name: &str) {
+    println!("{}", name);
 }
