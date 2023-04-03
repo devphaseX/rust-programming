@@ -10,4 +10,20 @@
 // * Use an if..else block to determine which message to display
 // * Use the println macro to display messages to the terminal
 
-fn main() {}
+fn main() {
+    let can_use_welcome_greet = true;
+
+    if can_use_welcome_greet {
+        println!("Hello");
+    } else {
+        println!("goodbye");
+    }
+
+    let can_use_welcome_greet = false;
+
+    if can_use_welcome_greet {
+        println!("Hello");
+    } else {
+        println!("goodbye");
+    }
+}
