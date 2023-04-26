@@ -34,8 +34,31 @@ struct Drink {
 }
 
 fn print_drink(drink: &Drink) {
-    println!(
-        "The drink with the favour {:?} and quantity {}",
-        drink.flavor, drink.fluid_ounces
-    );
+    match drink.flavor {
+        DrinkFlavor::Berry(ref kind) => {
+            println!("berry: {:?} with the quanity {:}", kind, drink.fluid_ounces)
+        }
+
+        DrinkFlavor::Citrus(ref kind) => {
+            println!(
+                "citrus: {:?} with the quanity {:}",
+                kind, drink.fluid_ounces
+            )
+        }
+
+        DrinkFlavor::Spicy(ref kind) => {
+            println!("spicy: {:?} with the quanity {:}", kind, drink.fluid_ounces)
+        }
+
+        DrinkFlavor::Minty(ref kind) => {
+            println!("minty: {:?} with the quanity {:}", kind, drink.fluid_ounces)
+        }
+
+        DrinkFlavor::Tropical(ref kind) => {
+            println!(
+                "tropical {:?} with the quanity {:}",
+                kind, drink.fluid_ounces
+            )
+        }
+    }
 }
