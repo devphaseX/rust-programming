@@ -16,4 +16,29 @@
 //   * For the Ok variant, print any message you want
 //   * For the Err variant, print out the error message
 
-fn main() {}
+fn main() {
+    let result = Adult::new("Ayomide", 23);
+    match result {
+        Ok(Adult { ref name, .. }) => println!("Person with the name {} is an adult.", name,),
+        Err(ref message) => println!("{}", message),
+    }
+}
+
+#[derive(Debug)]
+struct Adult {
+    name: String,
+    age: u8,
+}
+
+impl Adult {
+    fn new(name: &str, age: u8) -> Result<Self, String> {
+        if age >= 21 {
+            return Ok(Self {
+                name: name.to_owned(),
+                age,
+            });
+        }
+
+        Err("The person age is below the allowed age.".to_owned())
+    }
+}
