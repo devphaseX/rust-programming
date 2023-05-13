@@ -96,7 +96,18 @@ fn authorize(
     employee_name: &str,
     location: ProtectedLocation,
 ) -> Result<AuthorizationStatus, String> {
-    // put your code here
+    //     1. Connect to the database
+    let database_connection = Database::connect()?;
+    //     2. Find the employee with the `find_employee` database function
+    let employee = database_connection.find_employee(employee_name)?;
+    //     3. Get a keycard with the `get_keycard` database function
+    let keycard = database_connection.get_keycard(&employee)?;
+
+    if keycard.access_level >= location.required_access_level() {
+        return Ok(AuthorizationStatus::Allow);
+    }
+
+    Err(format!("{} doesn't have a keycard", employee_name))
 }
 
 fn main() {
