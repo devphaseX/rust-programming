@@ -23,4 +23,45 @@
 // * The program should be case-insensitive (the user should be able to type
 //   Reboot, reboot, REBOOT, etc.)
 
-fn main() {}
+#[derive(Debug)]
+enum PowerState {
+    Off,
+    Sleep,
+    Reboot,
+    Shutdown,
+    Hibernate,
+}
+
+fn print_power_message(command: Option<PowerState>) {
+    match command {
+        Some(option) => println!("performing {:?}", option),
+        None => {
+            println!("Invalid command")
+        }
+    }
+}
+fn main() {
+    let input = "reboot".to_lowercase();
+    let power_type;
+
+    match input.as_str() {
+        "off" => {
+            power_type = Some(PowerState::Off);
+        }
+        "sleep" => {
+            power_type = Some(PowerState::Sleep);
+        }
+        "reboot" => {
+            power_type = Some(PowerState::Reboot);
+        }
+        "shutdown" => {
+            power_type = Some(PowerState::Shutdown);
+        }
+        "hibernate" => {
+            power_type = Some(PowerState::Hibernate);
+        }
+        _ => power_type = None,
+    }
+
+    print_power_message(power_type)
+}
