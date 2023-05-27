@@ -32,3 +32,41 @@ fn concat(first: &str, second: &str) -> String {
 }
 
 fn main() {}
+
+#[cfg(test)]
+mod test {
+    use crate::{clamp, concat, div};
+
+    #[test]
+    fn check_the_clamp_fn() {
+        let lb = 5;
+        let ub = 10;
+        assert_eq!(clamp(4, lb, ub), 5, "underflow value should be clamped up");
+        assert_eq!(
+            clamp(12, lb, ub),
+            10,
+            "overflow value should be clamped down"
+        );
+    }
+
+    #[test]
+    fn check_the_div_fn() {
+        assert_eq!(div(20, 10), Some(2), "expected valid division");
+        assert_ne!(div(30, 10), Some(2), "expected value");
+    }
+
+    #[test]
+    fn check_concat_fn() {
+        assert_eq!(
+            concat("Hello", "World"),
+            "Hello World",
+            "Expect string to be joined"
+        );
+
+        assert_ne!(
+            concat("Hello", "World"),
+            "HelloWorld",
+            "Expect string to be separated by whitespace"
+        );
+    }
+}
