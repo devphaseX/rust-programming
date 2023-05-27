@@ -10,4 +10,11 @@
 
 fn main() {
     let data = vec![1, 2, 3, 4, 5];
+    let tripled: Vec<i32> = data
+        .iter()
+        .map(|num| num * 3)
+        .filter(|value| value < &10)
+        .collect();
+
+    println!("{:?}", tripled);
 }
